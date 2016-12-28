@@ -6,6 +6,15 @@
 </head>
 <body>
 
+<div id="app">
+  <input type="text" v-model="newTodo" @keyup.enter="addTodo">
+  <ul>
+    <li v-for="todo in todos">
+      <span v-text="todo.text"></span>
+      <button @click="removeTodo($index)">X</button>
+    </li>
+  </ul>
+</div>
 <!--
   综合使用以下技术:
   1. 页面指令:
@@ -18,11 +27,34 @@
     初始化数据: data
     事件处理函数: methods
 -->
-<div id="app">
-</div>
+
 
 <script type="text/javascript" src="../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el:'#app',
+    data:{
+      newTodo:'',
+      todos:[
+          {text:'add some todos'}
+      ]
+    },
+    methods:{
+     addTodo:function(){
+       var newTodo=this.newTodo.trim()
+       if(newTodo=''){
+         return
+       }
+         const todo={text:this.newTodo}
+         this.todos.unshift(todo)
+         this.newTodo=''
+
+     },
+      removeTodo:function(index){
+       this.todos.splice(index,1)
+      }
+    }
+  })
 </script>
 </body>
 </html>

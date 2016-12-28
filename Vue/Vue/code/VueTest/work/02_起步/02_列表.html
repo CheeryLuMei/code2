@@ -10,6 +10,19 @@
   </style>
 </head>
 <body>
+<div>
+  <ul v-cloak>
+    <li v-for="todo in todos">
+      {{todo.id}}--{{todo.name}}
+      <button @click="deleteItem($index,todo)">删除</button>
+    </li>
+  </ul>
+
+  <ul>
+    <li v-for="todo in todos" v-text="todo.id +'----'+todo.name">
+    </li>
+  </ul>
+</div>
 <!--功能: 显示信息列表-->
 <!--
   1. 在data中初始数组数据
@@ -25,6 +38,27 @@
             {id : 3, name : '打豆豆'}
           ]
 -->
-
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+      el:'body',
+      data:function () {
+        return {
+          todos:[
+            {id : 1, name : '吃饭'},
+            {id : 2, name : '睡觉'},
+            {id : 3, name : '打豆豆'}
+          ]
+        }
+      },
+      methods:{
+        deleteItem:function(index,todo){
+          if(confirm('确定删除'+todo.name+'吗')){
+            this.todos.splice(index,1)
+          }
+        }
+      }
+    })
+</script>
 </body>
 </html>

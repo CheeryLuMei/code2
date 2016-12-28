@@ -5,6 +5,10 @@
   <title>Title</title>
 </head>
 <body>
+<div id="demo">
+  <input type="text" v-model="msg">
+  <p>{{msg}}</p>
+</div>
 <!--
   1. Vue是什么?
     1). 由一位华裔前Google工程师开发的前端 MVVM js库
@@ -31,5 +35,14 @@
     6). 安装Webstorm插件:
       settings ==> plugin ==> browser repositories ==> 搜索vue.js ==>下载并重启
 -->
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+      el:'#demo',
+      data:{
+        msg:'nihao '
+      }
+    })
+</script>
 </body>
 </html>
